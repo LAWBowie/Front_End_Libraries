@@ -1,6 +1,9 @@
 # Front End Libraries
 All projects undertaken as part of FreeCodeCamps "Front-End libraries" certification.
 
+## Technologies 
+[![My Skills](https://skillicons.dev/icons?i=js,html,css,java,python,github,linkedin,vscode)](https://skillicons.dev)
+
 ## Drum Board
 Live Demo: [Drum Machine by Luke](https://codepen.io/LAWBowie/pen/yLQzXKa)
 
