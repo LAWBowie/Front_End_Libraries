@@ -12,7 +12,7 @@ Live Demo: [Random Quote Generator by Luke ](https://lawbowie.github.io/random_q
 ## Javascript Calculator
 
 ## 25 + 5 Clock
-
+Live Demo:  [25 + 5 Clock by Luke](https://codepen.io/LAWBowie/pen/JjerJBL).
 ### My Socials
 * [Twitter](https://twitter.com/LukeAWBowman)
 * [Linkedin](https://www.linkedin.com/in/luke-bowman-1801a8188/)
