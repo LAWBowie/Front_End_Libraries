@@ -5,7 +5,7 @@ All projects undertaken as part of FreeCodeCamps "Front-End libraries" certifica
 Live Demo: [Drum Machine by Luke](https://codepen.io/LAWBowie/pen/yLQzXKa)
 
 ## Random Quote Generator
-Live Demo: [Random Quote Generator by Luke ] (https://lawbowie.github.io/random_quote_generator/)
+Live Demo: [Random Quote Generator by Luke ](https://lawbowie.github.io/random_quote_generator/)
 
 ## Markdown Previewer
 
