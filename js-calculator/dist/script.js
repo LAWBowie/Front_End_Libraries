@@ -1,0 +1,211 @@
+// !! IMPORTANT README:
+
+// You may add additional external JS and CSS as needed to complete the project, however the current external resource MUST remain in place for the tests to work. BABEL must also be left in place. 
+
+/***********
+INSTRUCTIONS:
+  - Select the project you would 
+    like to complete from the dropdown 
+    menu.
+  - Click the "RUN TESTS" button to
+    run the tests against the blank 
+    pen.
+  - Click the "TESTS" button to see 
+    the individual test cases. 
+    (should all be failing at first)
+  - Start coding! As you fulfill each
+    test case, you will see them go   
+    from red to green.
+  - As you start to build out your 
+    project, when tests are failing, 
+    you should get helpful errors 
+    along the way!
+    ************/
+
+// PLEASE NOTE: Adding global style rules using the * selector, or by adding rules to body {..} or html {..}, or to all elements within body or html, i.e. h1 {..}, has the potential to pollute the test suite's CSS. Try adding: * { color: red }, for a quick example!
+
+// Once you have read the above messages, you can delete all comments. 
+import * as React from "https://cdn.skypack.dev/react@17.0.1";
+import * as ReactDOM from "https://cdn.skypack.dev/react-dom@17.0.1";
+
+const calcData = [
+{ id: "clear", value: "AC" },
+{ id: "divide", value: "/" },
+{ id: "multiply", value: "x" },
+{ id: "seven", value: 7 },
+{ id: "eight", value: 8 },
+{ id: "nine", value: 9 },
+{ id: "subtract", value: "-" },
+{ id: "four", value: 4 },
+{ id: "five", value: 5 },
+{ id: "six", value: 6 },
+{ id: "add", value: "+" },
+{ id: "one", value: 1 },
+{ id: "two", value: 2 },
+{ id: "three", value: 3 },
+{ id: "equals", value: "=" },
+{ id: "zero", value: 0 },
+{ id: "decimal", value: "." }];
+
+
+const operators = ["AC", "/", "x", "+", "-", "="];
+
+const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+const Display = ({ input, output }) => /*#__PURE__*/
+React.createElement("div", { className: "output" }, /*#__PURE__*/
+React.createElement("span", { className: "result" }, output), /*#__PURE__*/
+React.createElement("span", { id: "display", className: "input" }, input));
+
+
+
+const Key = ({ keyData: { id, value }, handleInput }) => /*#__PURE__*/
+React.createElement("button", { id: id, onClick: () => handleInput(value) },
+value);
+
+
+
+const Keyboard = ({ handleInput }) => /*#__PURE__*/
+React.createElement("div", { className: "keys" },
+calcData.map((key) => /*#__PURE__*/
+React.createElement(Key, { key: key.id, keyData: key, handleInput: handleInput })));
+
+
+
+
+const App = () => {
+  const [input, setInput] = React.useState("0");
+  const [output, setOutput] = React.useState("");
+  const [calculatorData, setCalculatorData] = React.useState("");
+
+  const handleSubmit = () => {
+    console.log({ calculatorData });
+
+    const total = eval(calculatorData);
+    setInput(total);
+    setOutput(`${total} = ${total}`);
+    setCalculatorData(`${total}`);
+  };
+
+  const handleClear = () => {
+    setInput("0");
+    setCalculatorData("");
+  };
+
+  const handleNumbers = value => {
+    if (!calculatorData.length) {
+      setInput(`${value}`);
+      setCalculatorData(`${value}`);
+    } else {
+      if (value === 0 && (calculatorData === "0" || input === "0")) {
+        setCalculatorData(`${calculatorData}`);
+      } else {
+        const lastChat = calculatorData.charAt(calculatorData.length - 1);
+        const isLastChatOperator =
+        lastChat === "*" || operators.includes(lastChat);
+
+        setInput(isLastChatOperator ? `${value}` : `${input}${value}`);
+        setCalculatorData(`${calculatorData}${value}`);
+      }
+    }
+  };
+
+  const dotOperator = () => {
+    const lastChat = calculatorData.charAt(calculatorData.length - 1);
+    if (!calculatorData.length) {
+      setInput("0.");
+      setCalculatorData("0.");
+    } else {
+      if (lastChat === "*" || operators.includes(lastChat)) {
+        setInput("0.");
+        setCalculatorData(`${calculatorData} 0.`);
+      } else {
+        setInput(
+        lastChat === "." || input.includes(".") ? `${input}` : `${input}.`);
+
+        const formattedValue =
+        lastChat === "." || input.includes(".") ?
+        `${calculatorData}` :
+        `${calculatorData}.`;
+        setCalculatorData(formattedValue);
+      }
+    }
+  };
+
+
+  const handleOperators = value => {
+    if (calculatorData.length) {
+      setInput(`${value}`);
+      const beforeLastChat = calculatorData.charAt(calculatorData.length - 2);
+
+      const beforeLastChatIsOperator =
+      operators.includes(beforeLastChat) || beforeLastChat === "*";
+
+      const lastChat = calculatorData.charAt(calculatorData.length - 1);
+
+      const lastChatIsOperator = operators.includes(lastChat) || lastChat === "*";
+
+      const validOp = value === "x" ? "*" : value;
+      if (
+      lastChatIsOperator && value !== "-" ||
+      beforeLastChatIsOperator && lastChatIsOperator)
+      {
+        if (beforeLastChatIsOperator) {
+          const updatedValue = `${calculatorData.substring(
+          0,
+          calculatorData.length - 2)
+          }${value}`;
+          setCalculatorData(updatedValue);
+        } else {
+          setCalculatorData(`${calculatorData.substring(0, calculatorData.length - 1)}${validOp}`);
+        }
+      } else {
+        setCalculatorData(`${calculatorData}${validOp}`);
+      }
+    }
+  };
+
+  const handleInput = value => {
+    const number = numbers.find(num => num === value);
+    const operator = operators.find(op => op === value);
+
+    switch (value) {
+      case "=":
+        handleSubmit();
+        break;
+      case "AC":
+        handleClear();
+        break;
+      case number:
+        handleNumbers(value);
+        break;
+      case ".":
+        dotOperator(value);
+        break;
+      case operator:
+        handleOperators(value);
+        break;
+      default:
+        break;}
+
+  };
+
+  const handleOutput = () => {
+    setOutput(calculatorData);
+  };
+
+  React.useEffect(() => {
+    handleOutput();
+  }, [calculatorData]);
+
+  return /*#__PURE__*/(
+    React.createElement("div", { className: "container" }, /*#__PURE__*/
+    React.createElement("div", { className: "calculator" }, /*#__PURE__*/
+    React.createElement(Display, { input: input, output: output }), /*#__PURE__*/
+    React.createElement(Keyboard, { handleInput: handleInput }))));
+
+
+
+};
+
+ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.getElementById("app"));
