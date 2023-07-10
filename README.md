@@ -13,6 +13,7 @@ Live Demo: [Random Quote Generator by Luke ](https://lawbowie.github.io/random_q
 ## Markdown Previewer
 
 ## Javascript Calculator
+Live Demo: [Javascript Calculator by Luke ](https://codepen.io/LAWBowie/pen/wvQrerV)
 
 ## 25 + 5 Clock
 Live Demo:  [25 + 5 Clock by Luke](https://codepen.io/LAWBowie/pen/JjerJBL).
