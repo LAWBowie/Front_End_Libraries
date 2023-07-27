@@ -1,4 +1,4 @@
-# Front End Libraries
+# Front-End Libraries
 All projects undertaken as part of FreeCodeCamps "Front-End libraries" certification. <br>
 All projects fulfill the user stories and pass all the tests.
 
@@ -19,6 +19,7 @@ Live Demo: [Javascript Calculator by Luke ](https://codepen.io/LAWBowie/pen/wvQr
 
 ## 25 + 5 Clock
 Live Demo:  [25 + 5 Clock by Luke](https://codepen.io/LAWBowie/pen/JjerJBL).
+
 ### My Socials
 * [Twitter](https://twitter.com/LukeAWBowman)
 * [Linkedin](https://www.linkedin.com/in/luke-bowman-1801a8188/)
